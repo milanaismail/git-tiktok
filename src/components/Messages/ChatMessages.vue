@@ -13,7 +13,7 @@ const props = defineProps({
 <template>
     <div class="comments">
         <ul>
-            <li v-for="(message, index) in props.messages" :key="index">
+            <li v-for="(message, index) in props.messages.slice().reverse()" :key="index">
                 <strong><p>{{ message.user }}</p></strong>
                 <p>{{ message.text }}</p>
             </li>
