@@ -1,11 +1,10 @@
 <script setup>
 import { ref } from 'vue';
 
-const emit = defineEmits(['sendMessage']);
-
-
 let name = ref('User'); 
 let messageText = ref('');
+
+const emit = defineEmits(['sendMessage']);
 
 function doit(){
     if (messageText.value.trim() !== "") {
@@ -14,7 +13,9 @@ function doit(){
             text: messageText.value
         };
         
+        console.log('Emitting message:', newMessage); // Log the message being emitted
         emit('sendMessage', newMessage);
+        messageText.value = ''; // Clear the input field
     }
 }
 
@@ -25,7 +26,7 @@ function doit(){
         <div class="comment-section">
             <label for="name">{{ name }}:</label>
             <input v-model="messageText" type="text" placeholder="Type your message here...">
-            <button @click.prevent="doit">Send</button>
+            <button @click="doit">Send</button>
         </div>
     </div>
 </template>
